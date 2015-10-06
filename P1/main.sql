@@ -1,42 +1,42 @@
-DROP TABLE IF EXISTS receptes;
-DROP TABLE IF EXISTS menjars;
-DROP TABLE IF EXISTS plats;
-DROP TABLE IF EXISTS ingredients;
-DROP TABLE IF EXISTS families;
-DROP TABLE IF EXISTS xefs;
+DROP TABLE IF EXISTS recepta;
+DROP TABLE IF EXISTS menjar;
+DROP TABLE IF EXISTS plat;
+DROP TABLE IF EXISTS ingredient;
+DROP TABLE IF EXISTS familia;
+DROP TABLE IF EXISTS xef;
 DROP TABLE IF EXISTS format_per;
 
 
 
-CREATE TABLE menjars {
+CREATE TABLE menjar {
     nom VARCHAR(50) ,
     idMenjar INTEGER PRIMARY KEY NOT NULL ,
     descripcio VARCHAR(150)
 
 };
 
-CREATE TABLE plats {
+CREATE TABLE plat {
     nom VARCHAR(50) ,
     idPlat INTEGER PRIMARY KEY NOT NULL ,
     descripcio VARCHAR(150)
 };
 
-CREATE TABLE ingredients {
+CREATE TABLE ingredient {
     nom VARCHAR(50),
     idIngredient INTEGER ,
     refrigeracio BOOLEAN NOT NULL DEFAULT false ,
     familia INTEGER ,
-    FOREIGN KEY (familia) REFERENCES families(idFamilia)
+    FOREIGN KEY (familia) REFERENCES familia(idFamilia)
 };
 
-CREATE TABLE families {
+CREATE TABLE familia {
     nom VARCHAR(50) ,
     idFamilia INTEGER PRIMARY KEY NOT NULL ,
     descripcio VARCHAR(150)
 
 };
 
-CREATE TABLE xefs {
+CREATE TABLE xef {
     nom VARCHAR(50)  ,
     idXef INTEGER PRIMARY KEY NOT NULL,
     estrella INTEGER
@@ -44,7 +44,7 @@ CREATE TABLE xefs {
 };
 
 
-CREATE TABLE receptes {
+CREATE TABLE recepta {
     nom VARCHAR(50) ,
     elaboracio VARCHAR(200) ,
     idRecepta INTEGER PRIMARY KEY NOT NULL ,
@@ -53,9 +53,9 @@ CREATE TABLE receptes {
     idX INTEGER ,
     idP INTEGER ,
     idM INTEGER ,
-    FOREIGN KEY(idX) REFERENCES xefs(idXef) ,
-    FOREIGN KEY(idP) REFERENCES plats(idPlat) ,
-    FOREIGN KEY(idM) REFERENCES menjars(idMenjar) 
+    FOREIGN KEY(idX) REFERENCES xef(idXef) ,
+    FOREIGN KEY(idP) REFERENCES plat(idPlat) ,
+    FOREIGN KEY(idM) REFERENCES menjar(idMenjar) 
 };
 
 
@@ -63,8 +63,8 @@ CREATE TABLE receptes {
 CREATE TABLE format_per {
     idR INTEGER ,
     idIngr INTEGER ,
-    FOREIGN KEY(idR) REFERENCES receptes(idRecepta), 
-    FOREIGN KEY(idIngr) REFERENCES ingredients(idIngredient)
+    FOREIGN KEY(idR) REFERENCES recepta(idRecepta), 
+    FOREIGN KEY(idIngr) REFERENCES ingredient(idIngredient)
 
 };
 
