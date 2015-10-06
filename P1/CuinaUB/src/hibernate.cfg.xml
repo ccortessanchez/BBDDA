@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.dialect">org.hibernate.dialect.SQLiteDialect</property>
+        <property name="hibernate.connection.driver_class">org.sqlite.JDBC</property>
+        <property name="hibernate.connection.url">jdbc:sqlite:test.db</property>
+        <!--<property name="hibernate.connection.url">jdbc:sqlite:/home/dquitata12.alumnes/NetBeansProjects/ADB/adb_privalia/base_de_dades/privalia.db</property>-->
+        <!-- Definimos propiedades de Hibernate para SQL -->
+        <property name="show_sql">false</property>
+        <property name="format_sql">true</property>
+        <!-- Definimos que Hibernate cree las tablas none : no actualiza, update : act las dif, create :> machaca todo en la bd-->
+        <!-- none, update, create -->
+        <property name="hibernate.hbm2ddl.auto">none</property>
+        <!-- Declaramos los archivos de mapping-->
+        <mapping resource="com/model/Familia.hbm.xml"/>
+        <mapping resource="com/model/Ingredient.hbm.xml"/>
+        <mapping resource="com/model/Menjar.hbm.xml"/>
+        <mapping resource="com/model/Plat.hbm.xml"/>
+        <mapping resource="com/model/Recepta.hbm.xml"/>
+        <mapping resource="com/model/Xef.hbm.xml"/>
+        
+    </session-factory>
+</hibernate-configuration>
