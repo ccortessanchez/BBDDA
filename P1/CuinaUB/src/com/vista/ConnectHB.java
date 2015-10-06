@@ -12,7 +12,7 @@ import org.hibernate.cfg.Configuration;
 
 /**
  *
- * @author carlos
+ * @author Carlos Cortes i Pol Girbal
  */
 public class ConnectHB {
     private static SessionFactory sf = null;

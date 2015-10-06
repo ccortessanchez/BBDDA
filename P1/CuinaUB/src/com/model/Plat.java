@@ -9,7 +9,7 @@ import java.util.Set;
 
 /**
  *
- * @author carlos
+ * @author Carlos Cortes i Pol Girbal
  */
 public class Plat {
     

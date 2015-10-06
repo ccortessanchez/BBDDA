@@ -19,11 +19,11 @@
        <many-to-one name="xef" class="com.model.Xef" fetch="select">
            <column name="IDXEF" /> <!-- CAMP FK de la taula Recepta IDENTICS A LES DUES ENTITATS --> 
        </many-to-one>
-       <many-to-one name="plat" class="com.model.Plat" fetch="select">
+       <one-to-one name="plat" class="com.model.Plat" fetch="select">
            <column name="IDPLAT" /> <!-- CAMP FK de la taula Recepta IDENTICS A LES DUES ENTITATS --> 
-       </many-to-one>
-       <many-to-one name="menjar" class="com.model.Menjar" fetch="select">
+       </one-to-one>
+       <one-to-one name="menjar" class="com.model.Menjar" fetch="select">
            <column name="IDMENJAR" /> <!-- CAMP FK de la taula Recepta IDENTICS A LES DUES ENTITATS --> 
-       </many-to-one>
+       </one-to-one>
   </class>
 </hibernate-mapping>

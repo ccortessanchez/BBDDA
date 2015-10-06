@@ -5,7 +5,7 @@ import java.util.Scanner;
 /**
  * Implementa un menú a partir d'una llista d'opcions.
  *
- * @author Carlos Cortés & Víctor Muñoz
+ * @author Carlos Cortes i Pol Girbal
  */
 public class Menu<TEnum> {
 

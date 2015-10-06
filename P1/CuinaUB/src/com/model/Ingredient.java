@@ -7,7 +7,7 @@ package com.model;
 
 /**
  *
- * @author carlos
+ * @author Carlos Cortes i Pol Girbal
  */
 public class Ingredient {
     private String nom;
