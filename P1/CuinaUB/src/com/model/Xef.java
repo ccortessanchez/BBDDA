@@ -17,10 +17,13 @@ public class Xef {
     private int estrelles;
     private Set<Recepta> receptes;
 
+    public Xef() {
+    }
     public Xef(String nom, int idXef, int estrelles) {
       this.nom = nom;
       this.idXef = idXef;
       this.estrelles = estrelles;
+
     }
 
     public Set<Recepta> getReceptes() {
@@ -29,9 +32,6 @@ public class Xef {
 
     public void setReceptes(Set<Recepta> receptes) {
       this.receptes = receptes;
-    }
-
-    public Xef() {
     }
 
     public String getNom() {
@@ -57,4 +57,5 @@ public class Xef {
     public void setEstrelles(int estrelles) {
       this.estrelles = estrelles;
     }
+
 }

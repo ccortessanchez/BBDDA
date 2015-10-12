@@ -29,7 +29,7 @@ public class CuinaUB {
 
     static private enum OpcionsMenuPrincipal {
 
-        OPT_RECEPTA, OPT_FAMILIA, OPT_MENJAR, OPT_PLAT, OPT_XEF, OPT_INGREDIENT, SORTIR
+        OPT_RECEPTA, OPT_MENJAR, OPT_PLAT, OPT_XEF, OPT_INGREDIENT, SORTIR
     };
 
     static private enum OpcionsRecepta {

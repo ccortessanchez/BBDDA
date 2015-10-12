@@ -50,12 +50,12 @@ CREATE TABLE recepta (
     idRecepta INTEGER PRIMARY KEY NOT NULL ,
     temps INTEGER ,
     dificultat INTEGER,
-    idX INTEGER ,
-    idP INTEGER ,
-    idM INTEGER ,
-    FOREIGN KEY(idX) REFERENCES xef(idXef) ,
-    FOREIGN KEY(idP) REFERENCES plat(idPlat) ,
-    FOREIGN KEY(idM) REFERENCES menjar(idMenjar) 
+    idXef INTEGER ,
+    idPlat INTEGER ,
+    idMenjar INTEGER ,
+    FOREIGN KEY(idXef) REFERENCES xef(idXef) ,
+    FOREIGN KEY(idPlat) REFERENCES plat(idPlat) ,
+    FOREIGN KEY(idMenjar) REFERENCES menjar(idMenjar) 
 );
 
 

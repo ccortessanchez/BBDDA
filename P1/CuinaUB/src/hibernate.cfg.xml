@@ -4,21 +4,20 @@
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.SQLiteDialect</property>
     <property name="hibernate.connection.driver_class">org.sqlite.JDBC</property>
-    <property name="hibernate.connection.url">jdbc:sqlite:\\C:\Users\carlos\Desktop\Uni\Base de Dades Avançades\Practicas\BBDDA\P1\CuinaUB\src\cuinaub.db</property>
-    <!--<property name="hibernate.connection.url">jdbc:sqlite:/home/dquitata12.alumnes/NetBeansProjects/ADB/adb_privalia/base_de_dades/privalia.db</property>-->
+    <property name="hibernate.connection.url">jdbc:sqlite:\\C:\Users\carlos\Desktop\Uni\Base de Dades Avançades\Practicas\BBDDA\P1\CuinaUB\src\cuinaub_aux.db</property>
     <!-- Definimos propiedades de Hibernate para SQL -->
     <property name="show_sql">false</property>
     <property name="format_sql">true</property>
     <!-- Definimos que Hibernate cree las tablas none : no actualiza, update : act las dif, create :> machaca todo en la bd-->
     <!-- none, update, create -->
-    <property name="hibernate.hbm2ddl.auto">none</property>
+    <!-- <property name="hibernate.hbm2ddl.auto">none</property> -->
     <!-- Declaramos los archivos de mapping-->
-    <mapping resource="com/model/Familia.hbm.xml"/>
+    <mapping resource="com/model/Xef.hbm.xml"/>
+    <mapping resource="com/model/Recepta.hbm.xml"/>
+    <!--<mapping resource="com/model/Familia.hbm.xml"/>
     <mapping resource="com/model/Ingredient.hbm.xml"/>
     <mapping resource="com/model/Menjar.hbm.xml"/>
     <mapping resource="com/model/Plat.hbm.xml"/>
-    <mapping resource="com/model/Xef.hbm.xml"/>
-    <mapping resource="com/model/Recepta.hbm.xml"/>
-    <!--<mapping resource="com/model/ReceptaIngr.hbm.xml"/> -->
+    <mapping resource="com/model/ReceptaIngr.hbm.xml"/> -->
   </session-factory>
 </hibernate-configuration>

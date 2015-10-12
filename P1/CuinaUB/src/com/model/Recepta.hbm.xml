@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<hibernate-mapping>
-  <class name="com.model.Recepta" table = "RECEPTA">
-      <id name="idRecepta" column="idRecepta">
-            <generator class="identity" />
+<hibernate-mapping package = "com.model">
+  <class name="Recepta" table = "RECEPTA">
+      <id name="idRecepta" column="IDRECEPTA">
+            <generator class="native" />
       </id>
       <property name="nom" column="NOM" />
       <property name="elaboracio" column="ELABORACIO" />
@@ -18,6 +18,10 @@
        </set> 
        <many-to-one name="menjar" class="com.model.Menjar" fetch="select">
             <column name="idM"/>
+       </many-to-one>
+       <many-to-one name="xef" class="Xef" fetch="select">
+                    <column name="IDXEF"/>
        </many-to-one>-->
+       
   </class>
 </hibernate-mapping>

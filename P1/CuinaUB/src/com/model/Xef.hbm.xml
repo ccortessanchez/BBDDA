@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<hibernate-mapping>
-  <class name="com.model.Xef" table = "XEF">
+<hibernate-mapping package = "com.model">
+  <class name="Xef" table = "XEF">
+
       <id name="idXef" column="IDXEF">
-            <generator class="identity" />
+            <generator class="native" />
       </id>
       <property name="estrelles" column="ESTRELLA" />
       <property name="nom" column="NOM" />
+      <!--
+      <set name="receptes" table="RECEPTA" lazy="false" cascade="all">
+            <key>
+                <column name="IDXEF"/>
+            </key>
+      
+            <one-to-many class="Recepta"/>
+        </set> -->
   </class>
 </hibernate-mapping>

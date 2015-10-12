@@ -5,6 +5,7 @@
  */
 package com.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -35,15 +36,15 @@ public class Recepta {
         
     }
 
-    public Recepta(String nom, String elaboracio, int idRecepta, int temps, int dificultat) {
+    public Recepta(String nom, String elaboracio, int idRecepta, int temps, int dificultat, Xef xef) {
       this.nom = nom;
       this.elaboracio = elaboracio;
       this.idRecepta = idRecepta;
       this.temps = temps;
       this.dificultat = dificultat;
       this.xef = new Xef();
-      this.plat = new Plat();
-      this.menjar = new Menjar();
+      //this.plat = new Plat();
+      //this.menjar = new Menjar();
     }
 
     public String getNom() {
@@ -84,6 +85,10 @@ public class Recepta {
 
     public void setDificultat(int dificultat) {
       this.dificultat = dificultat;
+    }
+
+    public void addIngredient(Ingredient ingredient){
+      this.ingredients.add(ingredient);
     }
     
 }
