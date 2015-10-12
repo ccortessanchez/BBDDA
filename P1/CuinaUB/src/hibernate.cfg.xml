@@ -4,7 +4,7 @@
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.SQLiteDialect</property>
     <property name="hibernate.connection.driver_class">org.sqlite.JDBC</property>
-    <property name="hibernate.connection.url">jdbc:sqlite:test.db</property>
+    <property name="hibernate.connection.url">jdbc:sqlite:\\C:\Users\carlos\Desktop\Uni\Base de Dades Avançades\Practicas\BBDDA\P1\CuinaUB\src\cuinaub.db</property>
     <!--<property name="hibernate.connection.url">jdbc:sqlite:/home/dquitata12.alumnes/NetBeansProjects/ADB/adb_privalia/base_de_dades/privalia.db</property>-->
     <!-- Definimos propiedades de Hibernate para SQL -->
     <property name="show_sql">false</property>
@@ -19,11 +19,6 @@
     <mapping resource="com/model/Plat.hbm.xml"/>
     <mapping resource="com/model/Recepta.hbm.xml"/>
     <mapping resource="com/model/Xef.hbm.xml"/>
-    <mapping/>
-    <mapping/>
-    <mapping/>
-    <mapping/>
-    <mapping/>
-    <mapping/>
+    <mapping resource="com/model/ReceptaIngr.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
