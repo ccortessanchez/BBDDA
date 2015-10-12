@@ -255,15 +255,19 @@ public class CuinaUB {
             switch (opcio) {
                 case MENU_S3_CREATE:
                     System.out.println("Has triat CREATE");
+                    createPlat(sc);
                     break;
                 case MENU_S3_READ:
                     System.out.println("Has triat READ");
+                    readPlat(sc);
                     break;
                 case MENU_S3_UPDATE:
                     System.out.println("Has triat UPDATE");
+                    updatePlat(sc);
                     break;
                 case MENU_S3_DELETE:
                     System.out.println("Has triat DELETE");
+                    deletePlat(sc);
                     break;
                 case MENU_S3_SORTIR:
                     System.out.println("Fins aviat!");
@@ -289,15 +293,19 @@ public class CuinaUB {
             switch (opcio) {
                 case MENU_S4_CREATE:
                     System.out.println("Has triat CREATE");
+                    createXef(sc);
                     break;
                 case MENU_S4_READ:
                     System.out.println("Has triat READ");
+                    readXef(sc);
                     break;
                 case MENU_S4_UPDATE:
                     System.out.println("Has triat UPDATE");
+                    updateXef(sc);
                     break;
                 case MENU_S4_DELETE:
                     System.out.println("Has triat DELETE");
+                    deleteXef(sc);
                     break;
                 case MENU_S4_SORTIR:
                     System.out.println("Fins aviat!");
@@ -451,15 +459,50 @@ public class CuinaUB {
     }
     
     private void readPlat(Scanner sc) {
-        
+        Transaction tx = session.beginTransaction();
+
+        System.out.println("\n-Registres de plats: ");
+
+        List<Plat> listado = new ArrayList<Plat>();
+        Query q = session.createQuery("from Plat");
+        listado = q.list();
+
+        System.out.println("id_plat\t nom_plat");
+        System.out.println("-----------------");
+        for (Plat p : listado) {
+            System.out.println(p.getIdPlat() + "\t\t" + p.getNom());
+        }
+        tx.commit();
     }
     
     private void updatePlat(Scanner sc) {
-        
+        readPlat(sc);
+
+        Transaction tx = session.beginTransaction();
+
+        System.out.println("\nQuin plat vols actualitzar? (inserta id)");
+        int id = sc.nextInt();
+
+        Plat p = (Plat) session.get(Plat.class, id);
+
+        System.out.println("\nIntrodueix nou nom per aquest plat:");
+        String nom = sc.next();
+        p.setNom(nom);
+        session.update(p);
+        tx.commit();
     }
     
     private void deletePlat(Scanner sc) {
-        
+        readPlat(sc);
+
+        Transaction tx = session.beginTransaction();
+
+        System.out.println("\nQuin plat vols eliminar? (inserta id)");
+        int id = sc.nextInt();
+
+        Plat p = (Plat) session.get(Plat.class, id);
+        session.delete(p);
+        tx.commit();
     }
     
     private void createXef(Scanner sc) {
@@ -478,14 +521,49 @@ public class CuinaUB {
     }
     
     private void readXef(Scanner sc) {
-        
+        Transaction tx = session.beginTransaction();
+
+        System.out.println("\n-Registres de xefs: ");
+
+        List<Xef> listado = new ArrayList<Xef>();
+        Query q = session.createQuery("from Xef");
+        listado = q.list();
+
+        System.out.println("id_xef\t nom_xef");
+        System.out.println("-----------------");
+        for (Xef x : listado) {
+            System.out.println(x.getIdXef() + "\t\t" + x.getNom());
+        }
+        tx.commit();
     }
     
     private void updateXef(Scanner sc) {
-        
+        readXef(sc);
+
+        Transaction tx = session.beginTransaction();
+
+        System.out.println("\nQuin xef vols actualitzar? (inserta id)");
+        int id = sc.nextInt();
+
+        Xef x = (Xef) session.get(Xef.class, id);
+
+        System.out.println("\nIntrodueix nou nom per aquest xef:");
+        String nom = sc.next();
+        x.setNom(nom);
+        session.update(x);
+        tx.commit();
     }
     
     private void deleteXef(Scanner sc) {
-        
+        readXef(sc);
+
+        Transaction tx = session.beginTransaction();
+
+        System.out.println("\nQuin xef vols eliminar? (inserta id)");
+        int id = sc.nextInt();
+
+        Xef x = (Xef) session.get(Xef.class, id);
+        session.delete(x);
+        tx.commit();
     }
 }

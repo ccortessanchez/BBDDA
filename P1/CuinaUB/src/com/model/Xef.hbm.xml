@@ -5,5 +5,7 @@
       <id name="idXef" column="IDXEF">
             <generator class="identity" />
       </id>
+      <property name="estrelles" column="ESTRELLA" />
+      <property name="nom" column="NOM" />
   </class>
 </hibernate-mapping>
