@@ -5,6 +5,7 @@
  */
 package com.vista;
 
+import com.model.Ingredient;
 import com.model.Menjar;
 import com.model.Plat;
 import com.model.Recepta;
@@ -330,15 +331,19 @@ public class CuinaUB {
             switch (opcio) {
                 case MENU_S5_CREATE:
                     System.out.println("Has triat CREATE");
+                    createIngredient(sc);
                     break;
                 case MENU_S5_READ:
                     System.out.println("Has triat READ");
+                    readIngredient(sc);
                     break;
                 case MENU_S5_UPDATE:
                     System.out.println("Has triat UPDATE");
+                    updateIngredient(sc);
                     break;
                 case MENU_S5_DELETE:
                     System.out.println("Has triat DELETE");
+                    deleteIngredient(sc);
                     break;
                 case MENU_S5_SORTIR:
                     System.out.println("Fins aviat!");
@@ -365,19 +370,62 @@ public class CuinaUB {
         r.setElaboracio(elaboracio);
         r.setTemps(temps);
         r.setDificultat(dificultat);
-        
+        session.save(r);
+        tx.commit();
 
     }
     
     private void readRecepta(Scanner sc) {
+        Transaction tx = session.beginTransaction();
+
+        System.out.println("\n-Registres de receptes: ");
+
+        List<Recepta> listado = new ArrayList<Recepta>();
+        Query q = session.createQuery("from Recepta");
+        listado = q.list();
+
+        System.out.println("id_recepta\t nom_recepta\t elaboracio\t temps\t dificultat");
+        System.out.println("-----------------");
+        for (Recepta r : listado) {
+            System.out.println(r.getIdRecepta() + "\t\t" + r.getNom() + "\t\t" + r.getElaboracio() + "\t\t" + r.getTemps() + "\t\t" + r.getDificultat());
+        }
+        tx.commit();
 
     }
     
     private void updateRecepta(Scanner sc) {
+        readRecepta(sc);
 
+        Transaction tx = session.beginTransaction();
+
+        System.out.println("\nQuina recepta vols actualitzar? (inserta id)");
+        int id = sc.nextInt();
+
+        Recepta r = (Recepta) session.get(Recepta.class, id);
+
+        System.out.println("\nIntrodueix nou nom per aquesta recepta:");
+        String nom = sc.next();
+        r.setNom(nom);
+        sc.nextLine();
+        System.out.println("\nIntrodueix nova elaboracio per aquesta recepta:");
+        String elaboracio = sc.nextLine();
+        r.setElaboracio(elaboracio);
+        session.update(r);
+        tx.commit();
+            
     }
     
     private void deleteRecepta(Scanner sc) {
+        readRecepta(sc);
+
+        Transaction tx = session.beginTransaction();
+
+        System.out.println("\nQuina recepta vols eliminar? (inserta id)");
+        int id = sc.nextInt();
+
+        Recepta r = (Recepta) session.get(Recepta.class, id);
+        session.delete(r);
+        tx.commit();
 
     }
     
@@ -405,10 +453,10 @@ public class CuinaUB {
         Query q = session.createQuery("from Menjar");
         listado = q.list();
 
-        System.out.println("id_menjar\t nom_menjar");
+        System.out.println("id_menjar\t nom_menjar\t descripcio");
         System.out.println("-----------------");
         for (Menjar m : listado) {
-            System.out.println(m.getIdMenjar() + "\t\t" + m.getNom());
+            System.out.println(m.getIdMenjar() + "\t\t" + m.getNom() + "\t\t" + m.getDescripcio());
         }
         tx.commit();
     }
@@ -427,6 +475,10 @@ public class CuinaUB {
         System.out.println("\nIntrodueix nou nom per aquest menjar:");
         String nom = sc.next();
         m.setNom(nom);
+        sc.nextLine();
+        System.out.println("\nIntrodueix nova descripcio per aquest menjar:");
+        String descripcio = sc.nextLine();
+        m.setDescripcio(descripcio);
         session.update(m);
         tx.commit();
         
@@ -467,10 +519,10 @@ public class CuinaUB {
         Query q = session.createQuery("from Plat");
         listado = q.list();
 
-        System.out.println("id_plat\t nom_plat");
+        System.out.println("id_plat\t nom_plat\t descripcio");
         System.out.println("-----------------");
         for (Plat p : listado) {
-            System.out.println(p.getIdPlat() + "\t\t" + p.getNom());
+            System.out.println(p.getIdPlat() + "\t\t" + p.getNom()+ "\t\t" + p.getDescripcio());
         }
         tx.commit();
     }
@@ -484,10 +536,14 @@ public class CuinaUB {
         int id = sc.nextInt();
 
         Plat p = (Plat) session.get(Plat.class, id);
-
+        
         System.out.println("\nIntrodueix nou nom per aquest plat:");
-        String nom = sc.next();
+        String nom = sc.nextLine();
         p.setNom(nom);
+        sc.nextLine();
+        System.out.println("\nIntrodueix nova descripcio per aquest plat:");
+        String descripcio = sc.nextLine();
+        p.setDescripcio(descripcio);
         session.update(p);
         tx.commit();
     }
@@ -529,10 +585,10 @@ public class CuinaUB {
         Query q = session.createQuery("from Xef");
         listado = q.list();
 
-        System.out.println("id_xef\t nom_xef");
+        System.out.println("id_xef\t nom_xef\t estrelles");
         System.out.println("-----------------");
         for (Xef x : listado) {
-            System.out.println(x.getIdXef() + "\t\t" + x.getNom());
+            System.out.println(x.getIdXef() + "\t\t" + x.getNom() + "\t\t" + x.getEstrelles());
         }
         tx.commit();
     }
@@ -548,8 +604,12 @@ public class CuinaUB {
         Xef x = (Xef) session.get(Xef.class, id);
 
         System.out.println("\nIntrodueix nou nom per aquest xef:");
-        String nom = sc.next();
+        String nom = sc.nextLine();
         x.setNom(nom);
+        sc.nextLine();
+        System.out.println("\nIntrodueix les noves estrelles per aquest xef:");
+        int estrelles = sc.nextInt();
+        x.setEstrelles(estrelles);
         session.update(x);
         tx.commit();
     }
@@ -564,6 +624,59 @@ public class CuinaUB {
 
         Xef x = (Xef) session.get(Xef.class, id);
         session.delete(x);
+        tx.commit();
+    }
+    
+    private void createIngredient(Scanner sc) {
+        Transaction tx = session.beginTransaction();
+        System.out.println("\n-Nom de l'ingredient?");
+        String nom = sc.nextLine();
+        System.out.println("\n-Refrigeracio? (SI o NO)");
+        String r = sc.next();
+        Ingredient i = new Ingredient();
+        if (r.equals("SI")) {
+            i.setRefrigeracio(true);
+        }
+        else {
+            i.setRefrigeracio(false);
+        }
+        
+        i.setNom(nom);
+        session.save(i);
+        tx.commit();
+    }
+    
+    private void readIngredient(Scanner sc) {
+        Transaction tx = session.beginTransaction();
+
+        System.out.println("\n-Registres de ingredients: ");
+
+        List<Ingredient> listado = new ArrayList<Ingredient>();
+        Query q = session.createQuery("from Ingredient");
+        listado = q.list();
+
+        System.out.println("id_ingredient\t nom_ingredient");
+        System.out.println("-----------------");
+        for (Ingredient i : listado) {
+            System.out.println(i.getIdIngredient() + "\t\t" + i.getNom());
+        }
+        tx.commit();
+    }
+    
+    private void updateIngredient(Scanner sc) {
+        
+    }
+    
+    private void deleteIngredient(Scanner sc) {
+        readIngredient(sc);
+
+        Transaction tx = session.beginTransaction();
+
+        System.out.println("\nQuin ingredient vols eliminar? (inserta id)");
+        int id = sc.nextInt();
+
+        Ingredient i = (Ingredient) session.get(Ingredient.class, id);
+        session.delete(i);
         tx.commit();
     }
 }

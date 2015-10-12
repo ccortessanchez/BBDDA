@@ -5,5 +5,7 @@
       <id name="idIngredient" column="IDINGREDIENT">
             <generator class="identity" />
       </id>
+      <property name="refrigeracio" column="REFRIGERACIO" />
+      <property name="nom" column="NOM" />
   </class>
 </hibernate-mapping>

@@ -2,12 +2,11 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
   <class name="com.model.Recepta" table = "RECEPTA">
-      <id name="idRecepta" column="IDRECEPTA">
+      <id name="idRecepta" column="idRecepta">
             <generator class="identity" />
       </id>
       <property name="nom" column="NOM" />
       <property name="elaboracio" column="ELABORACIO" />
-      <property name="descripcio" column="DESCRIPCIO" />
       <property name="temps" column="TEMPS" />
       <property name="dificultat" column="DIFICULTAT" />
       <!--
@@ -16,9 +15,9 @@
                <column name="IDINGREDIENT" /> 
            </key>
             <one-to-many class="com.model.Ingredient" /> 
-       </set> -->
+       </set> 
        <many-to-one name="menjar" class="com.model.Menjar" fetch="select">
             <column name="idM"/>
-       </many-to-one>
+       </many-to-one>-->
   </class>
 </hibernate-mapping>

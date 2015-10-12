@@ -15,6 +15,9 @@ public class Ingredient {
     private boolean refrigeracio;
     private Familia familia;
 
+    public Ingredient () {
+        
+    }
     public Ingredient(String nom, int idIngredient, boolean refrigeracio) {
       this.nom = nom;
       this.idIngredient = idIngredient;
