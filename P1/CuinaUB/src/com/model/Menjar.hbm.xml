@@ -2,10 +2,18 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
   <class name="com.model.Menjar" table = "MENJAR">
-      <id name="idMenjar" column="IDMENJAR">
+      <id name="idMenjar" column="idMenjar">
             <generator class="identity" />
       </id>
       <property name="descripcio" column="DESCRIPCIO" />
       <property name="nom" column="NOM" /> 
+      <!--
+      <set name="receptes" table="RECEPTA" lazy="true" cascade="all">
+          <key>
+                <column name="idM"/>
+            </key>
+      
+            <one-to-many class="com.model.Recepta"/>
+        </set> -->
   </class>
 </hibernate-mapping>

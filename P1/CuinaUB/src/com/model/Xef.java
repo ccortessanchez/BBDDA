@@ -15,7 +15,7 @@ public class Xef {
     private String nom;
     private int idXef;
     private int estrelles;
-    private Set<Plat> receptes;
+    private Set<Recepta> receptes;
 
     public Xef(String nom, int idXef, int estrelles) {
       this.nom = nom;
@@ -23,11 +23,11 @@ public class Xef {
       this.estrelles = estrelles;
     }
 
-    public Set<Plat> getReceptes() {
+    public Set<Recepta> getReceptes() {
       return this.receptes;
     }
 
-    public void setReceptes(Set<Plat> receptes) {
+    public void setReceptes(Set<Recepta> receptes) {
       this.receptes = receptes;
     }
 

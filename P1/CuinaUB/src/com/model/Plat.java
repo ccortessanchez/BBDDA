@@ -16,14 +16,14 @@ public class Plat {
     private String nom;
     private int idPlat;
     private String descripcio;
-    private Set<Plat> receptes;
+    private Set<Recepta> receptes;
 
     
-    public Set<Plat> getReceptes() {
+    public Set<Recepta> getReceptes() {
       return this.receptes;
     }
 
-    public void setReceptes(Set<Plat> receptes) {
+    public void setReceptes(Set<Recepta> receptes) {
       this.receptes = receptes;
     }
 

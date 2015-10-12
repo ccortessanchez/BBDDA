@@ -10,20 +10,15 @@
       <property name="descripcio" column="DESCRIPCIO" />
       <property name="temps" column="TEMPS" />
       <property name="dificultat" column="DIFICULTAT" />
-      <set name="ingredients" table="INGREDIENT" lazy="true" cascade="all">
+      <!--
+       <set name="ingredients" table="INGREDIENT" lazy="true" cascade="all">
            <key>
-               <column name="IDINGREDIENT" /> <!-- CAMP FK de la taula ingredient -->
+               <column name="IDINGREDIENT" /> 
            </key>
             <one-to-many class="com.model.Ingredient" /> 
-       </set>
-       <many-to-one name="xef" class="com.model.Xef" fetch="select">
-           <column name="IDXEF" /> <!-- CAMP FK de la taula Recepta IDENTICS A LES DUES ENTITATS --> 
+       </set> -->
+       <many-to-one name="menjar" class="com.model.Menjar" fetch="select">
+            <column name="idM"/>
        </many-to-one>
-       <one-to-one name="plat" class="com.model.Plat" fetch="select">
-           <column name="IDPLAT" /> <!-- CAMP FK de la taula Recepta IDENTICS A LES DUES ENTITATS --> 
-       </one-to-one>
-       <one-to-one name="menjar" class="com.model.Menjar" fetch="select">
-           <column name="IDMENJAR" /> <!-- CAMP FK de la taula Recepta IDENTICS A LES DUES ENTITATS --> 
-       </one-to-one>
   </class>
 </hibernate-mapping>

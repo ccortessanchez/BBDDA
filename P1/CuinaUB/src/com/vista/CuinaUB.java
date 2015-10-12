@@ -5,9 +5,17 @@
  */
 package com.vista;
 
+import com.model.Menjar;
+import com.model.Plat;
+import com.model.Recepta;
+import com.model.Xef;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 /**
  *
@@ -173,15 +181,19 @@ public class CuinaUB {
             switch (opcio) {
                 case MENU_S1_CREATE:
                     System.out.println("Has triat CREATE");
+                    createRecepta(sc);
                     break;
                 case MENU_S1_READ:
                     System.out.println("Has triat READ");
+                    readRecepta(sc);
                     break;
                 case MENU_S1_UPDATE:
                     System.out.println("Has triat UPDATE");
+                    updateRecepta(sc);
                     break;
                 case MENU_S1_DELETE:
                     System.out.println("Has triat DELETE");
+                    deleteRecepta(sc);
                     break;
                 case MENU_S1_SORTIR:
                     System.out.println("Fins aviat!");
@@ -206,15 +218,19 @@ public class CuinaUB {
             switch (opcio) {
                 case MENU_S2_CREATE:
                     System.out.println("Has triat CREATE");
+                    createMenjar(sc);
                     break;
                 case MENU_S2_READ:
                     System.out.println("Has triat READ");
+                    readMenjar(sc);
                     break;
                 case MENU_S2_UPDATE:
                     System.out.println("Has triat UPDATE");
+                    updateMenjar(sc);
                     break;
                 case MENU_S2_DELETE:
                     System.out.println("Has triat DELETE");
+                    deleteMenjar(sc);
                     break;
                 case MENU_S2_SORTIR:
                     System.out.println("Fins aviat!");
@@ -322,5 +338,154 @@ public class CuinaUB {
             }
 
         } while (opcio != OpcionsIngredient.MENU_S5_SORTIR);
+    }
+    
+    
+    private void createRecepta(Scanner sc) {
+        
+        Transaction tx = session.beginTransaction();
+        System.out.println("\n-Nom de la recepta?");
+        String nom = sc.nextLine();
+        System.out.println("\n-Elaboracio?");
+        String elaboracio = sc.nextLine();
+        System.out.println("\n-Temps?");
+        int temps = sc.nextInt();
+        System.out.println("\n-Dificultat?");
+        int dificultat = sc.nextInt();
+        Recepta r = new Recepta();
+        r.setNom(nom);
+        r.setElaboracio(elaboracio);
+        r.setTemps(temps);
+        r.setDificultat(dificultat);
+        
+
+    }
+    
+    private void readRecepta(Scanner sc) {
+
+    }
+    
+    private void updateRecepta(Scanner sc) {
+
+    }
+    
+    private void deleteRecepta(Scanner sc) {
+
+    }
+    
+    private void createMenjar(Scanner sc) {
+        
+        Transaction tx = session.beginTransaction();
+        System.out.println("\n-Nom del menjar?");
+        String nom = sc.nextLine();
+        System.out.println("\n-Descripcio?");
+        String descripcio = sc.nextLine();
+        Menjar m = new Menjar();
+        m.setNom(nom);
+        m.setDescripcio(descripcio);
+        session.save(m);
+        tx.commit();
+        
+    }
+    
+    private void readMenjar(Scanner sc) {
+        Transaction tx = session.beginTransaction();
+
+        System.out.println("\n-Registres de menjars: ");
+
+        List<Menjar> listado = new ArrayList<Menjar>();
+        Query q = session.createQuery("from Menjar");
+        listado = q.list();
+
+        System.out.println("id_menjar\t nom_menjar");
+        System.out.println("-----------------");
+        for (Menjar m : listado) {
+            System.out.println(m.getIdMenjar() + "\t\t" + m.getNom());
+        }
+        tx.commit();
+    }
+    
+    private void updateMenjar(Scanner sc) {
+        
+        readMenjar(sc);
+
+        Transaction tx = session.beginTransaction();
+
+        System.out.println("\nQuin menjar vols actualitzar? (inserta id)");
+        int id = sc.nextInt();
+
+        Menjar m = (Menjar) session.get(Menjar.class, id);
+
+        System.out.println("\nIntrodueix nou nom per aquest menjar:");
+        String nom = sc.next();
+        m.setNom(nom);
+        session.update(m);
+        tx.commit();
+        
+    }
+    
+    private void deleteMenjar(Scanner sc) {
+        readMenjar(sc);
+
+        Transaction tx = session.beginTransaction();
+
+        System.out.println("\nQuin menjar vols eliminar? (inserta id)");
+        int id = sc.nextInt();
+
+        Menjar m = (Menjar) session.get(Menjar.class, id);
+        session.delete(m);
+        tx.commit();
+    }
+    
+    private void createPlat(Scanner sc) {
+        Transaction tx = session.beginTransaction();
+        System.out.println("\n-Nom del plat?");
+        String nom = sc.nextLine();
+        System.out.println("\n-Descripcio?");
+        String descripcio = sc.nextLine();
+        Plat p = new Plat();
+        p.setNom(nom);
+        p.setDescripcio(descripcio);
+        session.save(p);
+        tx.commit();
+    }
+    
+    private void readPlat(Scanner sc) {
+        
+    }
+    
+    private void updatePlat(Scanner sc) {
+        
+    }
+    
+    private void deletePlat(Scanner sc) {
+        
+    }
+    
+    private void createXef(Scanner sc) {
+        
+        Transaction tx = session.beginTransaction();
+        System.out.println("\n-Nom del xef?");
+        String nom = sc.nextLine();
+        System.out.println("\n-Estrelles?");
+        int estrelles = sc.nextInt();
+        Xef x = new Xef();
+        x.setNom(nom);
+        x.setEstrelles(estrelles);
+        session.save(x);
+        tx.commit();
+        
+    }
+    
+    private void readXef(Scanner sc) {
+        
+    }
+    
+    private void updateXef(Scanner sc) {
+        
+    }
+    
+    private void deleteXef(Scanner sc) {
+        
     }
 }

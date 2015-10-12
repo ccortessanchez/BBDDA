@@ -30,6 +30,10 @@ public class Recepta {
     public void setIngredients(Set<Ingredient> ingredients) {
       this.ingredients = ingredients;
     }
+    
+    public Recepta() {
+        
+    }
 
     public Recepta(String nom, String elaboracio, int idRecepta, int temps, int dificultat) {
       this.nom = nom;
