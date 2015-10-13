@@ -8,13 +8,13 @@
       </id>
       <property name="estrelles" column="ESTRELLA" />
       <property name="nom" column="NOM" />
-      <!--
+      
       <set name="receptes" table="RECEPTA" lazy="false" cascade="all">
             <key>
                 <column name="IDXEF"/>
             </key>
       
             <one-to-many class="Recepta"/>
-        </set> -->
+      </set> 
   </class>
 </hibernate-mapping>

@@ -10,18 +10,22 @@
       <property name="temps" column="TEMPS" />
       <property name="dificultat" column="DIFICULTAT" />
       <!--
-       <set name="ingredients" table="INGREDIENT" lazy="true" cascade="all">
-           <key>
-               <column name="IDINGREDIENT" /> 
-           </key>
-            <one-to-many class="com.model.Ingredient" /> 
-       </set> 
-       <many-to-one name="menjar" class="com.model.Menjar" fetch="select">
-            <column name="idM"/>
-       </many-to-one>
+       <set name="ingredients" table="INGREDIENTS" lazy="false" cascade="all">
+            <key>
+                <column name="IDRECEPTA"/>
+            </key>
+      
+            <one-to-many class="Recepta"/>
+       </set> --> 
        <many-to-one name="xef" class="Xef" fetch="select">
                     <column name="IDXEF"/>
-       </many-to-one>-->
+       </many-to-one>
+       <many-to-one name="plat" class="Plat" fetch="select">
+                    <column name="IDPLAT"/>
+       </many-to-one> 
+       <many-to-one name="menjar" class="Menjar" fetch="select">
+                    <column name="IDMENJAR"/>
+       </many-to-one>
        
   </class>
 </hibernate-mapping>

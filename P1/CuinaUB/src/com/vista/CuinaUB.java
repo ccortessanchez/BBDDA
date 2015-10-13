@@ -5,6 +5,7 @@
  */
 package com.vista;
 
+import com.model.Familia;
 import com.model.Ingredient;
 import com.model.Menjar;
 import com.model.Plat;
@@ -29,7 +30,7 @@ public class CuinaUB {
 
     static private enum OpcionsMenuPrincipal {
 
-        OPT_RECEPTA, OPT_MENJAR, OPT_PLAT, OPT_XEF, OPT_INGREDIENT, SORTIR
+        OPT_RECEPTA, OPT_MENJAR, OPT_PLAT, OPT_XEF, OPT_INGREDIENT, OPT_FAMILIA, SORTIR
     };
 
     static private enum OpcionsRecepta {
@@ -57,8 +58,13 @@ public class CuinaUB {
         MENU_S5_CREATE, MENU_S5_READ, MENU_S5_UPDATE, MENU_S5_DELETE, MENU_S5_SORTIR
     };
     
+    static private enum OpcionsFamilia {
+
+        MENU_S6_CREATE, MENU_S6_READ, MENU_S6_UPDATE, MENU_S6_DELETE, MENU_S6_SORTIR
+    };
+    
     static private String[] descMenuPrincipal = {"CRUD Recepta", "CRUD Menjar",
-        "CRUD Plat", "CRUD Xef", "CRUD Ingredient", "Sortir"};
+        "CRUD Plat", "CRUD Xef", "CRUD Ingredient", "CRUD Familia", "Sortir"};
     static private String[] descSubMenu1 = {"Create", "Read",
         "Update", "Delete", "Tornar al menú anterior"};
     static private String[] descSubMenu2 = {"Create", "Read",
@@ -68,6 +74,8 @@ public class CuinaUB {
     static private String[] descSubMenu4 = {"Create", "Read",
         "Update", "Delete", "Tornar al menú anterior"};
     static private String[] descSubMenu5 = {"Create", "Read",
+        "Update", "Delete", "Tornar al menú anterior"};
+    static private String[] descSubMenu6 = {"Create", "Read",
         "Update", "Delete", "Tornar al menú anterior"};
 
     private static final String user = "admin";
@@ -157,6 +165,9 @@ public class CuinaUB {
                 case OPT_INGREDIENT:
                     gestioIngredient_CRUD(sc);
                     break;
+                case OPT_FAMILIA:
+                    gestioFamilia_CRUD(sc);
+                    break;
                 case SORTIR:
                     System.out.println("");
                     session.close();
@@ -208,7 +219,7 @@ public class CuinaUB {
 
         Menu<OpcionsMenjar> menu = new Menu<OpcionsMenjar>("Operacions CRUD per tipus de menjar", OpcionsMenjar.values());
 
-        menu.setDescripcions(descSubMenu1);
+        menu.setDescripcions(descSubMenu2);
 
         OpcionsMenjar opcio = null;
         do {
@@ -245,7 +256,7 @@ public class CuinaUB {
 
         Menu<OpcionsPlat> menu = new Menu<OpcionsPlat>("Operacions CRUD per tipus de plat", OpcionsPlat.values());
 
-        menu.setDescripcions(descSubMenu1);
+        menu.setDescripcions(descSubMenu3);
 
         OpcionsPlat opcio = null;
         do {
@@ -283,7 +294,7 @@ public class CuinaUB {
 
         Menu<OpcionsXef> menu = new Menu<OpcionsXef>("Operacions CRUD per Xef", OpcionsXef.values());
 
-        menu.setDescripcions(descSubMenu1);
+        menu.setDescripcions(descSubMenu4);
 
         OpcionsXef opcio = null;
         do {
@@ -320,7 +331,7 @@ public class CuinaUB {
 
         Menu<OpcionsIngredient> menu = new Menu<OpcionsIngredient>("Operacions CRUD per Ingredient", OpcionsIngredient.values());
 
-        menu.setDescripcions(descSubMenu1);
+        menu.setDescripcions(descSubMenu5);
 
         OpcionsIngredient opcio = null;
         do {
@@ -353,6 +364,43 @@ public class CuinaUB {
         } while (opcio != OpcionsIngredient.MENU_S5_SORTIR);
     }
     
+        private void gestioFamilia_CRUD(Scanner sc) {
+
+        Menu<OpcionsFamilia> menu = new Menu<OpcionsFamilia>("Operacions CRUD per Familia", OpcionsFamilia.values());
+
+        menu.setDescripcions(descSubMenu6);
+
+        OpcionsFamilia opcio = null;
+        do {
+            menu.mostrarMenu();
+
+            opcio = menu.getOpcio(sc);
+
+            switch (opcio) {
+                case MENU_S6_CREATE:
+                    System.out.println("Has triat CREATE");
+                    createFamilia(sc);
+                    break;
+                case MENU_S6_READ:
+                    System.out.println("Has triat READ");
+                    readFamilia(sc);
+                    break;
+                case MENU_S6_UPDATE:
+                    System.out.println("Has triat UPDATE");
+                    updateFamilia(sc);
+                    break;
+                case MENU_S6_DELETE:
+                    System.out.println("Has triat DELETE");
+                    deleteFamilia(sc);
+                    break;
+                case MENU_S6_SORTIR:
+                    System.out.println("Fins aviat!");
+                    break;
+            }
+
+        } while (opcio != OpcionsFamilia.MENU_S6_SORTIR);
+    }
+    
     
     private void createRecepta(Scanner sc) {
         
@@ -365,18 +413,37 @@ public class CuinaUB {
         int temps = sc.nextInt();
         System.out.println("\n-Dificultat?");
         int dificultat = sc.nextInt();
+        
+        readXef(sc);
+        System.out.println("\n-A quin xef pertany? (introdueix id)");
+        int id_x = sc.nextInt();
+        Xef x = (Xef) session.get(Xef.class, id_x);
+        
+        readMenjar(sc);
+        System.out.println("\n-A quin menjar pertany? (introdueix id)");
+        int id_m = sc.nextInt();
+        Menjar m = (Menjar) session.get(Menjar.class, id_m);
+        
+        readPlat(sc);
+        System.out.println("\n-A quin plat pertany? (introdueix id)");
+        int id_p = sc.nextInt();
+        Plat p = (Plat) session.get(Plat.class, id_p);
+        
         Recepta r = new Recepta();
         r.setNom(nom);
         r.setElaboracio(elaboracio);
         r.setTemps(temps);
         r.setDificultat(dificultat);
+        r.setXef(x);
+        r.setMenjar(m);
+        r.setPlat(p);
         session.save(r);
         tx.commit();
 
     }
     
     private void readRecepta(Scanner sc) {
-        Transaction tx = session.beginTransaction();
+        //Transaction tx = session.beginTransaction();
 
         System.out.println("\n-Registres de receptes: ");
 
@@ -389,7 +456,7 @@ public class CuinaUB {
         for (Recepta r : listado) {
             System.out.println(r.getIdRecepta() + "\t\t" + r.getNom() + "\t\t" + r.getElaboracio() + "\t\t" + r.getTemps() + "\t\t" + r.getDificultat());
         }
-        tx.commit();
+        //tx.commit();
 
     }
     
@@ -445,7 +512,7 @@ public class CuinaUB {
     }
     
     private void readMenjar(Scanner sc) {
-        Transaction tx = session.beginTransaction();
+        //Transaction tx = session.beginTransaction();
 
         System.out.println("\n-Registres de menjars: ");
 
@@ -458,7 +525,7 @@ public class CuinaUB {
         for (Menjar m : listado) {
             System.out.println(m.getIdMenjar() + "\t\t" + m.getNom() + "\t\t" + m.getDescripcio());
         }
-        tx.commit();
+        //tx.commit();
     }
     
     private void updateMenjar(Scanner sc) {
@@ -511,7 +578,7 @@ public class CuinaUB {
     }
     
     private void readPlat(Scanner sc) {
-        Transaction tx = session.beginTransaction();
+        //Transaction tx = session.beginTransaction();
 
         System.out.println("\n-Registres de plats: ");
 
@@ -524,7 +591,7 @@ public class CuinaUB {
         for (Plat p : listado) {
             System.out.println(p.getIdPlat() + "\t\t" + p.getNom()+ "\t\t" + p.getDescripcio());
         }
-        tx.commit();
+        //tx.commit();
     }
     
     private void updatePlat(Scanner sc) {
@@ -577,7 +644,7 @@ public class CuinaUB {
     }
     
     private void readXef(Scanner sc) {
-        Transaction tx = session.beginTransaction();
+        //Transaction tx = session.beginTransaction();
 
         System.out.println("\n-Registres de xefs: ");
 
@@ -590,7 +657,7 @@ public class CuinaUB {
         for (Xef x : listado) {
             System.out.println(x.getIdXef() + "\t\t" + x.getNom() + "\t\t" + x.getEstrelles());
         }
-        tx.commit();
+        //tx.commit();
     }
     
     private void updateXef(Scanner sc) {
@@ -641,13 +708,19 @@ public class CuinaUB {
             i.setRefrigeracio(false);
         }
         
+        readFamilia(sc);
+        System.out.println("\n-A quina familia pertany? (introdueix id)");
+        int id_f = sc.nextInt();
+        Familia f = (Familia) session.get(Familia.class, id_f);
+        
         i.setNom(nom);
+        i.setFamilia(f);
         session.save(i);
         tx.commit();
     }
     
     private void readIngredient(Scanner sc) {
-        Transaction tx = session.beginTransaction();
+        //Transaction tx = session.beginTransaction();
 
         System.out.println("\n-Registres de ingredients: ");
 
@@ -660,11 +733,24 @@ public class CuinaUB {
         for (Ingredient i : listado) {
             System.out.println(i.getIdIngredient() + "\t\t" + i.getNom());
         }
-        tx.commit();
+        //tx.commit();
     }
     
     private void updateIngredient(Scanner sc) {
-        
+        readIngredient(sc);
+
+        Transaction tx = session.beginTransaction();
+
+        System.out.println("\nQuin ingredient vols actualitzar? (inserta id)");
+        int id = sc.nextInt();
+
+        Ingredient i = (Ingredient) session.get(Ingredient.class, id);
+
+        System.out.println("\nIntrodueix nou nom per aquest xef:");
+        String nom = sc.nextLine();
+        i.setNom(nom);
+        session.update(i);
+        tx.commit();
     }
     
     private void deleteIngredient(Scanner sc) {
@@ -679,4 +765,70 @@ public class CuinaUB {
         session.delete(i);
         tx.commit();
     }
+    
+     private void createFamilia(Scanner sc) {
+        Transaction tx = session.beginTransaction();
+        System.out.println("\n-Nom de la familia?");
+        String nom = sc.nextLine();
+        System.out.println("\n-Descripcio?");
+        String descripcio = sc.next();
+        Familia f = new Familia();
+        f.setNom(nom);
+        f.setDescripcio(descripcio);
+        session.save(f);
+        tx.commit();
+    }
+     
+     private void readFamilia(Scanner sc) {
+        //Transaction tx = session.beginTransaction();
+
+        System.out.println("\n-Registres de families: ");
+
+        List<Familia> listado = new ArrayList<Familia>();
+        Query q = session.createQuery("from Familia");
+        listado = q.list();
+
+        System.out.println("id_familia\t nom_familia");
+        System.out.println("-----------------");
+        for (Familia f : listado) {
+            System.out.println(f.getIdFamilia() + "\t\t" + f.getNom());
+        }
+        //tx.commit();
+    }
+     
+     private void updateFamilia(Scanner sc) {
+        readIngredient(sc);
+
+        Transaction tx = session.beginTransaction();
+
+        System.out.println("\nQuina familia vols actualitzar? (inserta id)");
+        int id = sc.nextInt();
+
+        Familia f = (Familia) session.get(Familia.class, id);
+        
+        System.out.println("\nIntrodueix nou nom per aquesta familia:");
+        String nom = sc.nextLine();
+        f.setNom(nom);
+        sc.nextLine();
+        System.out.println("\nIntrodueix nova descripcio per aquesta familia:");
+        String descripcio = sc.nextLine();
+        f.setDescripcio(descripcio);
+        session.update(f);
+        tx.commit();
+    }
+    
+     
+     private void deleteFamilia(Scanner sc) {
+        readFamilia(sc);
+
+        Transaction tx = session.beginTransaction();
+
+        System.out.println("\nQuina familia vols eliminar? (inserta id)");
+        int id = sc.nextInt();
+
+        Familia f = (Familia) session.get(Familia.class, id);
+        session.delete(f);
+        tx.commit();
+    }
+
 }

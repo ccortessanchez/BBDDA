@@ -49,4 +49,12 @@ public class Ingredient {
       this.refrigeracio = refrigeracio;
     }
     
+    public Familia getFamilia() {
+        return familia;
+    }
+
+    public void setFamilia(Familia familia) {
+        this.familia = familia;
+    }
+    
 }

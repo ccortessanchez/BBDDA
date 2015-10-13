@@ -43,8 +43,8 @@ public class Recepta {
       this.temps = temps;
       this.dificultat = dificultat;
       this.xef = new Xef();
-      //this.plat = new Plat();
-      //this.menjar = new Menjar();
+      this.plat = new Plat();
+      this.menjar = new Menjar();
     }
 
     public String getNom() {
@@ -89,6 +89,30 @@ public class Recepta {
 
     public void addIngredient(Ingredient ingredient){
       this.ingredients.add(ingredient);
+    }
+    
+    public Xef getXef() {
+        return xef;
+    }
+
+    public void setXef(Xef xef) {
+        this.xef = xef;
+    }
+    
+    public Plat getPlat() {
+        return plat;
+    }
+
+    public void setPlat(Plat plat) {
+        this.plat = plat;
+    }
+    
+    public Menjar getMenjar() {
+        return menjar;
+    }
+
+    public void setMenjar(Menjar menjar) {
+        this.menjar = menjar;
     }
     
 }

@@ -59,4 +59,6 @@ public class Plat {
     public void setDescripcio(String descripcio) {
       this.descripcio = descripcio;
     }
+    
+    
 }
