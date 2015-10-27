@@ -7,6 +7,8 @@ DROP TABLE IF EXISTS geolocalitzacio;
 DROP TABLE IF EXISTS us;
 DROP TABLE IF EXISTS propietari;
 DROP TABLE IF EXISTS ciutat;
+DROP TABLE IF EXISTS inscriu_sol_inmoble;
+
 
 CREATE TABLE inmoble (
     superficie INTEGER,
@@ -64,4 +66,13 @@ CREATE TABLE propietari (
 CREATE TABLE ciutat (
 	id_ciutat INTEGER ,
 	nom VARCHAR(25)
+);
+
+CREATE TABLE inscriu_sol_inmoble (
+	ref_inmoble INTEGER ,
+	ref_sol INTEGER ,
+	nom_ciutat VARCHAR(25) ,
+	FOREIGN KEY (ref_inmoble) REFERENCES inmoble(ref_cadastral) ,
+	FOREIGN KEY (ref_sol) REFERENCES sol(ref_cadastral) ,
+	FOREIGN KEY (nom_ciutat) REFERENCES ciutat(nom)
 );
