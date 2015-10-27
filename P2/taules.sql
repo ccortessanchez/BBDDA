@@ -6,7 +6,7 @@ DROP TABLE IF EXISTS tipus_sol;
 DROP TABLE IF EXISTS geolocalitzacio;
 DROP TABLE IF EXISTS us;
 DROP TABLE IF EXISTS propietari;
-DROP TABLE IF EXISTS ciutat;
+DROP TABLE IF EXISTS cadastre;
 DROP TABLE IF EXISTS inscriu_sol_inmoble;
 
 
@@ -63,9 +63,9 @@ CREATE TABLE propietari (
 	telefon INTEGER
 );
 
-CREATE TABLE ciutat (
-	id_ciutat INTEGER ,
-	nom VARCHAR(25)
+CREATE TABLE cadastre (
+	any_cadastre INTEGER ,
+	ciutat VARCHAR(25)
 );
 
 CREATE TABLE inscriu_sol_inmoble (
