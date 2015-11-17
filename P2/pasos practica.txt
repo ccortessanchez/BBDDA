@@ -5,3 +5,6 @@
 -editar jsp amb les nostres queries
 
 *anar afegint una a una les dimensions i probant-les
+
+postgresql consola
+pg_dump > arxiu.sql
