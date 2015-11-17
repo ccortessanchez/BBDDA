@@ -1,0 +1,7 @@
+-taules al postgresql
+-workbench conectat amb postgresql
+-crear schema workbench
+-xml a webinf/queries
+-editar jsp amb les nostres queries
+
+*anar afegint una a una les dimensions i probant-les
