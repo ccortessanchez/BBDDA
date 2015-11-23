@@ -8,6 +8,8 @@ DROP TABLE IF EXISTS us;
 DROP TABLE IF EXISTS propietari;
 DROP TABLE IF EXISTS cadastre;
 
+
+
 CREATE TABLE tipus_inmoble (
 	id_tipusinmoble INTEGER PRIMARY KEY NOT NULL,
 	nom VARCHAR(50) ,
