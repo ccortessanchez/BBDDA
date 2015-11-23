@@ -1,0 +1,10 @@
+\copy fecha FROM C:\Users\carlos\Desktop\Uni\BDA\Practicas\BBDDA\P2\database\fecha.csv DELIMITER ';' CSV;
+\copy inmoble FROM C:\Users\carlos\Desktop\Uni\BDA\Practicas\BBDDA\P2\database\inmoble.csv DELIMITER ';' CSV;
+\copy sol FROM C:\Users\carlos\Desktop\Uni\BDA\Practicas\BBDDA\P2\database\sol.csv DELIMITER ';' CSV;
+\copy tipus_inmoble FROM C:\Users\carlos\Desktop\Uni\BDA\Practicas\BBDDA\P2\database\tipus_inmoble.csv DELIMITER ';' CSV;
+\copy subtipus_inmoble FROM C:\Users\carlos\Desktop\Uni\BDA\Practicas\BBDDA\P2\database\subtipus_inmoble.csv DELIMITER ';' CSV;
+\copy tipus_sol FROM C:\Users\carlos\Desktop\Uni\BDA\Practicas\BBDDA\P2\database\tipus_sol.csv DELIMITER ';' CSV;
+\copy geolocalitzacio FROM C:\Users\carlos\Desktop\Uni\BDA\Practicas\BBDDA\P2\database\geolocalitzacio.csv DELIMITER ';' CSV;
+\copy us FROM C:\Users\carlos\Desktop\Uni\BDA\Practicas\BBDDA\P2\database\us.csv DELIMITER ';' CSV;
+\copy propietari FROM C:\Users\carlos\Desktop\Uni\BDA\Practicas\BBDDA\P2\database\propietari.csv DELIMITER ';' CSV;
+\copy cadastre FROM C:\Users\carlos\Desktop\Uni\BDA\Practicas\BBDDA\P2\database\cadastre.csv DELIMITER ';' CSV;
