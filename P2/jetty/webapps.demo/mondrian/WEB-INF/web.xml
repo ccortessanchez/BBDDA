@@ -145,7 +145,7 @@ All Rights Reserved.
   </servlet-mapping>
 
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
+    <welcome-file>index1.html</welcome-file>
   </welcome-file-list>
 
   <taglib>

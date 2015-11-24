@@ -1,0 +1,70 @@
+<Schema name="New Schema1">
+  <Cube name="cadastre" visible="true" cache="true" enabled="true">
+    <Table name="cadastre" schema="public">
+    </Table>
+    <Dimension type="StandardDimension" visible="true" foreignKey="fecha_id" highCardinality="false" name="fecha">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="fecha" schema="public">
+        </Table>
+        <Level name="id_fecha" visible="true" column="id_fecha" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="desc_fecha" visible="true" column="desc_anyo" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="any">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="inmoble_id" highCardinality="false" name="inmoble">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="inmoble" schema="public">
+        </Table>
+        <Level name="id_inmoble" visible="true" column="id_inmoble" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="desc_inmoble" visible="true" column="estat" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="estat del inmoble">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="sol_id" highCardinality="false" name="sol">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="sol" schema="public">
+        </Table>
+        <Level name="id_sol" visible="true" column="id_sol" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="desc_sol" visible="true" column="superficie" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="superficie sol">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="geolocalitzacio_id" highCardinality="false" name="geolocalitzacio">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="geolocalitzacio" schema="public">
+        </Table>
+        <Level name="id_geolocalitzacio" visible="true" column="id_geolocalitzacio" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="desc_geo" visible="true" column="x" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="us_id" highCardinality="false" name="us">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="us" schema="public">
+        </Table>
+        <Level name="id_us" visible="true" column="id_us" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="desc_us" visible="true" column="descripcio" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="propietari_id" highCardinality="false" name="propietari">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="propietari" schema="public">
+        </Table>
+        <Level name="id_propietari" visible="true" column="dni" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="dni">
+        </Level>
+        <Level name="desc_propietari" visible="true" column="cognom1" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Measure name="Num_propietaris" column="propietari_id" aggregator="distinct-count" visible="true">
+    </Measure>
+    <Measure name="Num_inmobles" column="inmoble_id" aggregator="distinct count" visible="true">
+    </Measure>
+  </Cube>
+</Schema>

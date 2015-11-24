@@ -2,8 +2,7 @@
 <%@ taglib uri="http://www.tonbeller.com/jpivot" prefix="jp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 
-<jp:mondrianQuery id="query01" jdbcDriver="org.apache.derby.jdbc.EmbeddedDriver" jdbcUrl="jdbc:derby:classpath:/foodmart" catalogUri="/WEB-INF/queries/FoodMart.xml"
-   jdbcUser="sa" jdbcPassword="sa" connectionPooling="false">
+<jp:mondrianQuery id="query01" jdbcDriver="org.postgresql.Driver" jdbcUrl="jdbc:postgresql://localhost:5432/cadastre?user=postgres&password=admin" catalogUri="/WEB-INF/queries/cadastre.xml">
 select
 {[propietari].[All propietari]} on columns, 
 from [cadastre]
